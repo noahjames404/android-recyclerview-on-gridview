@@ -1,9 +1,12 @@
 package com.example.recyclerandgridview;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +22,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView price, description, name;
-        public MyViewHolder(@NonNull View itemView) {
+        public LinearLayout linearLayout;
+        public MyViewHolder(@NonNull final View itemView) {
             super(itemView);
             price = (TextView) itemView.findViewById(R.id.tvPrice);
             name = (TextView) itemView.findViewById(R.id.tvName);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.product_item);
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //trigger
+                    Log.d("user_click", "onClick: item clicked item" + name.getText());
+                }
+            });
         }
     }
 
